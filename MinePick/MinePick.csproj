@@ -10,6 +10,9 @@
     <None Remove="assets\001.png" />
     <None Remove="assets\002.png" />
     <None Remove="assets\003.png" />
+    <None Remove="assets\004.png" />
+    <None Remove="assets\005.png" />
+    <None Remove="assets\006.png" />
     <None Remove="assets\floder.png" />
   </ItemGroup>
   <ItemGroup>
@@ -20,6 +23,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="assets\003.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="assets\004.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="assets\005.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="assets\006.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

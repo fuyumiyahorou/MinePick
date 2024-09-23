@@ -24,5 +24,80 @@
         </Grid>
 
         
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="240"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="200"/>
+            </Grid.ColumnDefinitions>
+
+            <Border  Grid.Column="0" BorderBrush="#ecf0f1" BorderThickness="1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="32"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="32"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.Column="0" Height="24" Width="24" Source="/assets/006.png" Margin="4"/>
+                        <TextBlock Grid.Column="1" Text="列表" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="4"/>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <ListBox x:Name="ipt_List" BorderThickness="0"/>
+                    </Grid>
+                </Grid>
+            </Border>
+
+
+            <Border  Grid.Column="1" BorderBrush="#ecf0f1" BorderThickness="1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="32"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="32"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.Column="0" Height="24" Width="24" Source="/assets/004.png" Margin="4"/>
+                        <TextBlock Grid.Column="1" Text="表格" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="4"/>
+                    </Grid>
+                    <Grid Grid.Row="1">
+
+                    </Grid>
+                </Grid>
+            </Border>
+
+
+            <Border  Grid.Column="2" BorderBrush="#ecf0f1" BorderThickness="1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="32"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="32"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.Column="0" Height="24" Width="24" Source="/assets/005.png" Margin="4"/>
+                        <TextBlock Grid.Column="1" Text="预览" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="4"/>
+                    </Grid>
+                    <Grid Grid.Row="1">
+
+                    </Grid>
+                </Grid>
+            </Border>
+
+
+
+
+
+
+        </Grid>
     </Grid>
 </Window>
