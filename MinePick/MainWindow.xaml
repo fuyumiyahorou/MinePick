@@ -1,0 +1,28 @@
+﻿<Window x:Class="MinePick.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MinePick"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="32"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="32"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="32"/>
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column="0" x:Name="btm_Open" Height="24" Width="24" Margin="4,4,4,4" Cursor="Hand" Source="/assets/002.png" MouseDown="btm_Open_MouseDown"/>
+            <TextBox Grid.Column="1" x:Name="ipt_Path" Height="24" Margin="4,4,4,4" VerticalAlignment="Center" VerticalContentAlignment="Center" KeyDown="ipt_Path_KeyDown" IsReadOnly="True"/>
+            <Image Grid.Column="2" x:Name="btm_Clear" Height="24" Width="24" Margin="4,4,4,4" Cursor="Hand" Source="/assets/003.png" MouseDown="btm_Clear_MouseDown"/>
+
+        </Grid>
+
+        
+    </Grid>
+</Window>
