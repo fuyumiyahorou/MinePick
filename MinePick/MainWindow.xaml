@@ -46,7 +46,7 @@
                         <TextBlock Grid.Column="1" Text="列表" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="4"/>
                     </Grid>
                     <Grid Grid.Row="1">
-                        <ListBox x:Name="ipt_List" BorderThickness="0"/>
+                        <ListBox x:Name="ipt_List" BorderThickness="0" SelectionChanged="ipt_List_SelectionChanged"/>
                     </Grid>
                 </Grid>
             </Border>
@@ -67,7 +67,10 @@
                         <TextBlock Grid.Column="1" Text="表格" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="4"/>
                     </Grid>
                     <Grid Grid.Row="1">
+                        
 
+                        <DataGrid x:Name="ipt_Sheet" AutoGenerateColumns="False">
+                        </DataGrid>
                     </Grid>
                 </Grid>
             </Border>

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Win32;
+using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Windows;
@@ -10,6 +11,13 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using DocumentFormat.OpenXml;
+using DocumentFormat.OpenXml.Packaging;
+using DocumentFormat.OpenXml.Spreadsheet;
+using System.Linq;
+using System.Data;
+
+
 
 namespace MinePick
 {
@@ -41,6 +49,7 @@ namespace MinePick
                 // Get the selected folder
                 string fullPathToFolder = dialog.FolderName;
                 string folderNameOnly = dialog.SafeFolderName;
+
                 ipt_Path.Text = fullPathToFolder;
                 ipt_Path.IsReadOnly = true;
 
@@ -68,6 +77,29 @@ namespace MinePick
         }
 
 
+        private void ipt_List_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ipt_Sheet.ItemsSource = null;
+            ipt_Sheet.Items.Clear();
+            if (ipt_List.SelectedIndex>0)
+            {
+                string file_path = ipt_Path.Text + @"\" + ipt_List.SelectedItem;
+
+
+                DataTable dt = Get_excel(file_path);
+
+
+
+                ipt_Sheet.ItemsSource = (System.Collections.IEnumerable)dt;
+
+
+
+            }
+
+
+
+
+        }
 
 
 
@@ -99,11 +131,59 @@ namespace MinePick
 
         }
 
-
-
-        private void All_Ini()
+        private DataTable Get_excel(string file_path)
         {
-            ipt_Path.Text = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
+            using (SpreadsheetDocument doc = SpreadsheetDocument.Open(file_path, false))
+            {
+                WorkbookPart workbookPart = doc.WorkbookPart;
+                Sheet sheet = workbookPart.Workbook.Sheets.GetFirstChild<Sheet>();
+                WorksheetPart worksheetPart = (WorksheetPart)workbookPart.GetPartById(sheet.Id);
+
+                OpenXmlReader reader = OpenXmlReader.Create(worksheetPart);
+
+
+                DataTable dataTable = new DataTable();
+
+
+                while (reader.Read())
+                {
+                    if (reader.ElementType == typeof(Row))
+                    {
+                        List<string> ls = new List<string>();
+                        Row row = (Row)reader.LoadCurrentElement();
+                        foreach (Cell cell in row.Elements<Cell>())
+                        {
+                            string cellValue = GetCellValue(doc, cell);
+
+                            ls.Add(cellValue);
+                        }
+                        dataTable.Rows.Add(ls);
+
+                    }
+                }
+                return dataTable;
+            }
+        }
+        private static string GetCellValue(SpreadsheetDocument doc, Cell cell)
+        {
+            SharedStringTablePart stringTablePart = doc.WorkbookPart.SharedStringTablePart;
+            string value = "";
+            if (cell.CellValue != null)
+            {
+                value = cell.CellValue.InnerXml;
+            }
+
+
+
+
+            if (cell.DataType != null && cell.DataType.Value == CellValues.SharedString)
+            {
+                return stringTablePart.SharedStringTable.ChildElements[Int32.Parse(value)].InnerText;
+            }
+            else
+            {
+                return value;
+            }
         }
 
 
@@ -124,6 +204,19 @@ namespace MinePick
 
 
 
+        private void All_Ini()
+        {
+            ipt_Path.Text = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
+        }
+
 
     }
+
+
+
+
+
+
+
+
 }
