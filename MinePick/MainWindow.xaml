@@ -23,9 +23,9 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="32"/>
             </Grid.ColumnDefinitions>
-            <Image Grid.Column="0" x:Name="btm_Open" Height="24" Width="24" Margin="4,4,4,4" Cursor="Hand" Source="/assets/002.png" MouseDown="btm_Open_MouseDown"/>
+            <Image Grid.Column="0" x:Name="btm_Open" Height="24" Width="24" Margin="4,4,4,4" Cursor="Hand" Source="/assets/002.png" MouseDown="btm_Open_MouseDown" ToolTip="选择文件夹"/>
             <TextBox Grid.Column="1" x:Name="ipt_Path" Height="24" Margin="4,4,4,4" VerticalAlignment="Center" VerticalContentAlignment="Center" KeyDown="ipt_Path_KeyDown" IsReadOnly="True"/>
-            <Image Grid.Column="2" x:Name="btm_Clear" Height="24" Width="24" Margin="4,4,4,4" Cursor="Hand" Source="/assets/003.png" MouseDown="btm_Clear_MouseDown"/>
+            <Image Grid.Column="2" x:Name="btm_Clear" Height="24" Width="24" Margin="4,4,4,4" Cursor="Hand" Source="/assets/003.png" MouseDown="btm_Clear_MouseDown" ToolTip="清空"/>
 
         </Grid>
 
@@ -48,9 +48,12 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="32"/>
                             <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="32"/>
                         </Grid.ColumnDefinitions>
-                        <Image Grid.Column="0" Height="24" Width="24" Source="/assets/006.png" Margin="4"/>
+                        <Image Grid.Column="0" Height="20" Width="20" Source="/assets/006.png" Margin="4"/>
                         <TextBlock Grid.Column="1" Text="列表" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="4"/>
+                        <Image Grid.Column="2" Height="24" Width="24" Source="/assets/008.png" Margin="4"  Cursor="Hand"  ToolTip="刷新目录" x:Name="ipt_Fresh" MouseDown="ipt_Fresh_MouseDown"/>
+
                     </Grid>
                     <Grid Grid.Row="1">
                         <ListBox x:Name="ipt_List" BorderThickness="0" SelectionChanged="ipt_List_SelectionChanged" SelectionMode="Single" FontSize="14" FontFamily="宋体" />
@@ -74,7 +77,7 @@
                             <ColumnDefinition Width="32"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Image Grid.Column="0" Height="24" Width="24" Source="/assets/004.png" Margin="4"/>
+                        <Image Grid.Column="0" Height="20" Width="20" Source="/assets/004.png" Margin="4"/>
                         <TextBlock Grid.Column="1" Text="表格" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="4"/>
                     </Grid>
                     <Grid Grid.Row="1">
@@ -99,9 +102,14 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="32"/>
                             <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="32"/>
+                            <ColumnDefinition Width="32"/>
                         </Grid.ColumnDefinitions>
-                        <Image Grid.Column="0" Height="24" Width="24" Source="/assets/005.png" Margin="4"/>
+                        <Image Grid.Column="0" Height="20" Width="20" Source="/assets/005.png" Margin="4"/>
                         <TextBlock Grid.Column="1" Text="预览" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="4"/>
+                        <Image Grid.Column="2" x:Name="opt_Clear" Cursor="Hand" Height="24" Width="24" Source="/assets/001.png" Margin="4" ToolTip="清除预览" MouseDown="opt_Clear_MouseDown"/>
+                        <Image Grid.Column="3" x:Name="opt_Save" Cursor="Hand" Height="24" Width="24" Source="/assets/007.png" Margin="4" ToolTip="保存文件"/>
+
                     </Grid>
                     <Grid Grid.Row="1">
                         <reoGrid:ReoGridControl x:Name="opt_Sheet" Width="Auto" Height="Auto" Margin="0" Readonly="True" SheetTabNewButtonVisible="False" ShowScrollEndSpacing="False" SheetTabVisible="False"/>

@@ -15,6 +15,7 @@ using System.Linq;
 using System.Data;
 using unvell.ReoGrid.IO;
 using unvell.ReoGrid;
+using System.Windows.Forms;
 
 
 
@@ -63,7 +64,7 @@ namespace MinePick
             ipt_Path.IsReadOnly = false;
         }
 
-        private void ipt_Path_KeyDown(object sender, KeyEventArgs e)
+        private void ipt_Path_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
             {
@@ -122,20 +123,24 @@ namespace MinePick
         private void Find_files()
         {
             string path = ipt_Path.Text;
-            if (path != null & Directory.Exists(path))
+            if (Directory.Exists(path))
             {
-                DirectoryInfo directory = new DirectoryInfo(path);
-                FileInfo[] files = directory.GetFiles();
-
-                ipt_List.Items.Clear();
-                foreach (FileInfo file in files)
+                if (path != null)
                 {
-                    if (file.Extension == ".xlsx")
-                    {
+                    DirectoryInfo directory = new DirectoryInfo(path);
+                    FileInfo[] files = directory.GetFiles();
 
-                        ipt_List.Items.Add(file.Name);
+                    ipt_List.Items.Clear();
+                    foreach (FileInfo file in files)
+                    {
+                        if (file.Extension == ".xlsx")
+                        {
+
+                            ipt_List.Items.Add(file.Name);
+                        }
                     }
                 }
+
 
             }
             if (ipt_List.Items.Count > 0)
@@ -176,7 +181,9 @@ namespace MinePick
 
         private void ipt_Sheet_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            GC.Collect();
             RangePosition rp = ipt_Sheet.CurrentWorksheet.SelectionRange;
+            opt_Sheet.CurrentWorksheet.Resize(1, 2);
 
             opt_Loco.Text = "已选择 " + rp.ToString().Split(":")[0];
                                                                                                                            
@@ -189,7 +196,7 @@ namespace MinePick
                 temp.Load(cf);
                 //temp.CurrentWorksheet.SelectionRange = rp;
                 var value = temp.CurrentWorksheet[rp.ToString().Split(":")[0]];
-                opt_Sheet.CurrentWorksheet[lo,0] = li;
+                opt_Sheet.CurrentWorksheet[lo, 0] = li;
                 opt_Sheet.CurrentWorksheet[lo, 1] = value;
 
 
@@ -199,14 +206,21 @@ namespace MinePick
                 lo ++;
                 opt_Sheet.CurrentWorksheet.SetRows(lo+1);
             }
+
         }
 
+        private void ipt_Fresh_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (Directory.Exists(ipt_Path.Text))
+            {
+                Find_files();
+            }
+        }
 
+        private void opt_Clear_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            System.Windows.Forms.MessageBox.Show("确定清除吗？", "清除提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
 
-
-
-
-
-
+        }
     }
 }
