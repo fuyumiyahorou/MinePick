@@ -80,7 +80,7 @@ namespace MinePick
         private void ipt_List_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
-            if (ipt_List.SelectedIndex>0)
+            if (ipt_List.SelectedIndex > -1)
             {
                 string file_path = ipt_Path.Text + @"\" + ipt_List.SelectedItem;
 
@@ -97,13 +97,13 @@ namespace MinePick
 
         private void Load_Excel(string path)
         {
-
+            ipt_Sheet.Dispose();
             ipt_Sheet.Worksheets.Clear();
             ipt_Sheet.Load(path);
 
-            ipt_Sheet.CurrentWorksheet.SetCols(ipt_Sheet.CurrentWorksheet.MaxContentCol+1);
+            ipt_Sheet.CurrentWorksheet.SetCols(ipt_Sheet.CurrentWorksheet.MaxContentCol + 1);
             ipt_Sheet.CurrentWorksheet.SetRows(ipt_Sheet.CurrentWorksheet.MaxContentRow + 1);
-
+            ipt_Sheet.CurrentWorksheet.SelectionMode = WorksheetSelectionMode.Cell;
 
 
             ipt_Sheet.Readonly = true;
@@ -128,11 +128,11 @@ namespace MinePick
                 FileInfo[] files = directory.GetFiles();
 
                 ipt_List.Items.Clear();
-                foreach (FileInfo file in files) 
+                foreach (FileInfo file in files)
                 {
-                    if (file.Extension ==".xlsx")
+                    if (file.Extension == ".xlsx")
                     {
-                        
+
                         ipt_List.Items.Add(file.Name);
                     }
                 }
@@ -140,11 +140,13 @@ namespace MinePick
             }
             if (ipt_List.Items.Count > 0)
             {
-                opt_Count.Text = "已加载 "+ ipt_List.Items.Count +" 项";
+                opt_Count.Text = "已加载 " + ipt_List.Items.Count + " 项";
             }
-            else {
+            else
+            {
                 opt_Count.Text = "未加载";
             }
+            ipt_List.SelectedIndex = -1;
 
         }
 
@@ -169,19 +171,42 @@ namespace MinePick
             ipt_Path.Text = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
 
             ipt_Sheet.CurrentWorksheet.Resize(1, 1);
+            opt_Sheet.CurrentWorksheet.Resize(1, 2);
         }
 
         private void ipt_Sheet_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            RangePosition rp = ipt_Sheet.CurrentWorksheet.SelectionRange;
 
+            opt_Loco.Text = "已选择 " + rp.ToString().Split(":")[0];
+                                                                                                                           
+
+            ReoGridControl temp = new ReoGridControl();
+            int lo = 0;
+            foreach (string li in ipt_List.Items)
+            {
+                string cf = ipt_Path.Text + "\\" + li;
+                temp.Load(cf);
+                //temp.CurrentWorksheet.SelectionRange = rp;
+                var value = temp.CurrentWorksheet[rp.ToString().Split(":")[0]];
+                opt_Sheet.CurrentWorksheet[lo,0] = li;
+                opt_Sheet.CurrentWorksheet[lo, 1] = value;
+
+
+
+
+
+                lo ++;
+                opt_Sheet.CurrentWorksheet.SetRows(lo+1);
+            }
         }
+
+
+
+
+
+
+
+
     }
-
-
-
-
-
-
-
-
 }

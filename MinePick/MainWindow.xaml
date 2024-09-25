@@ -53,9 +53,11 @@
                         <TextBlock Grid.Column="1" Text="列表" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="4"/>
                     </Grid>
                     <Grid Grid.Row="1">
-                        <ListBox x:Name="ipt_List" BorderThickness="0" SelectionChanged="ipt_List_SelectionChanged" FontSize="14" FontFamily="宋体" />
+                        <ListBox x:Name="ipt_List" BorderThickness="0" SelectionChanged="ipt_List_SelectionChanged" SelectionMode="Single" FontSize="14" FontFamily="宋体" />
                     </Grid>
-                    <TextBlock Grid.Row="2" x:Name="opt_Count" Text="未加载" FontSize="12" Margin="4,0,4,0" Padding="0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                    <Grid Grid.Row="2" Background="#1abc9c">
+                        <TextBlock x:Name="opt_Count" Text="未加载" FontSize="12" Margin="4,0,4,0" Padding="0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                    </Grid>
                 </Grid>
             </Border>
 
@@ -65,6 +67,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="32"/>
                         <RowDefinition Height="*"/>
+                        <RowDefinition Height="16"/>
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0">
                         <Grid.ColumnDefinitions>
@@ -78,6 +81,9 @@
 
                         <reoGrid:ReoGridControl x:Name="ipt_Sheet" Width="Auto" Height="Auto" Margin="0" Readonly="True" SheetTabNewButtonVisible="False" ShowScrollEndSpacing="False" SheetTabVisible="False" MouseDown="ipt_Sheet_MouseDown"/>
                     </Grid>
+                    <Grid Grid.Row="2" Background="#1abc9c">
+                        <TextBlock x:Name="opt_Loco" Text="未选择" FontSize="12" Margin="4,0,4,0" Padding="0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                    </Grid>
                 </Grid>
             </Border>
 
@@ -87,6 +93,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="32"/>
                         <RowDefinition Height="*"/>
+                        <RowDefinition Height="16"/>
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0">
                         <Grid.ColumnDefinitions>
@@ -97,7 +104,11 @@
                         <TextBlock Grid.Column="1" Text="预览" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="4"/>
                     </Grid>
                     <Grid Grid.Row="1">
+                        <reoGrid:ReoGridControl x:Name="opt_Sheet" Width="Auto" Height="Auto" Margin="0" Readonly="True" SheetTabNewButtonVisible="False" ShowScrollEndSpacing="False" SheetTabVisible="False"/>
 
+                    </Grid>
+                    <Grid Grid.Row="2" Background="#1abc9c">
+                        <TextBlock x:Name="opt_Opt" Text="未保存" FontSize="12" Margin="4,0,4,0" Padding="0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                     </Grid>
                 </Grid>
             </Border>
