@@ -4,8 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MinePick"
+        xmlns:reoGrid="clr-namespace:unvell.ReoGrid;assembly=unvell.ReoGrid"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+
+
+
+
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="32"/>
@@ -36,6 +42,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="32"/>
                         <RowDefinition Height="*"/>
+                        <RowDefinition Height="16"/>
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0">
                         <Grid.ColumnDefinitions>
@@ -46,8 +53,9 @@
                         <TextBlock Grid.Column="1" Text="列表" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="4"/>
                     </Grid>
                     <Grid Grid.Row="1">
-                        <ListBox x:Name="ipt_List" BorderThickness="0" SelectionChanged="ipt_List_SelectionChanged"/>
+                        <ListBox x:Name="ipt_List" BorderThickness="0" SelectionChanged="ipt_List_SelectionChanged" FontSize="14" FontFamily="宋体" />
                     </Grid>
+                    <TextBlock Grid.Row="2" x:Name="opt_Count" Text="未加载" FontSize="12" Margin="4,0,4,0" Padding="0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                 </Grid>
             </Border>
 
@@ -67,10 +75,8 @@
                         <TextBlock Grid.Column="1" Text="表格" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="4"/>
                     </Grid>
                     <Grid Grid.Row="1">
-                        
 
-                        <DataGrid x:Name="ipt_Sheet" AutoGenerateColumns="False">
-                        </DataGrid>
+                        <reoGrid:ReoGridControl x:Name="ipt_Sheet" Width="Auto" Height="Auto" Margin="0" Readonly="True" SheetTabNewButtonVisible="False" ShowScrollEndSpacing="False" SheetTabVisible="False" MouseDown="ipt_Sheet_MouseDown"/>
                     </Grid>
                 </Grid>
             </Border>
@@ -102,5 +108,8 @@
 
 
         </Grid>
+
+
+        
     </Grid>
 </Window>

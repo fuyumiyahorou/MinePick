@@ -17,7 +17,7 @@
     <None Remove="assets\floder.png" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="DocumentFormat.OpenXml" Version="3.1.0" />
+    <PackageReference Include="unvell.ReoGridWPF.dll" Version="3.0.0" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="assets\001.png">

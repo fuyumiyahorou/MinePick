@@ -11,11 +11,11 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using DocumentFormat.OpenXml;
-using DocumentFormat.OpenXml.Packaging;
-using DocumentFormat.OpenXml.Spreadsheet;
 using System.Linq;
 using System.Data;
+using unvell.ReoGrid.IO;
+using unvell.ReoGrid;
+
 
 
 
@@ -79,20 +79,14 @@ namespace MinePick
 
         private void ipt_List_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ipt_Sheet.ItemsSource = null;
-            ipt_Sheet.Items.Clear();
+
             if (ipt_List.SelectedIndex>0)
             {
                 string file_path = ipt_Path.Text + @"\" + ipt_List.SelectedItem;
 
 
-                DataTable dt = Get_excel(file_path);
 
-
-
-                ipt_Sheet.ItemsSource = (System.Collections.IEnumerable)dt;
-
-
+                Load_Excel(file_path);
 
             }
 
@@ -101,7 +95,21 @@ namespace MinePick
 
         }
 
+        private void Load_Excel(string path)
+        {
 
+            ipt_Sheet.Worksheets.Clear();
+            ipt_Sheet.Load(path);
+
+            ipt_Sheet.CurrentWorksheet.SetCols(ipt_Sheet.CurrentWorksheet.MaxContentCol+1);
+            ipt_Sheet.CurrentWorksheet.SetRows(ipt_Sheet.CurrentWorksheet.MaxContentRow + 1);
+
+
+
+            ipt_Sheet.Readonly = true;
+
+            GC.Collect();
+        }
 
 
 
@@ -124,69 +132,21 @@ namespace MinePick
                 {
                     if (file.Extension ==".xlsx")
                     {
+                        
                         ipt_List.Items.Add(file.Name);
                     }
                 }
+
+            }
+            if (ipt_List.Items.Count > 0)
+            {
+                opt_Count.Text = "已加载 "+ ipt_List.Items.Count +" 项";
+            }
+            else {
+                opt_Count.Text = "未加载";
             }
 
         }
-
-        private DataTable Get_excel(string file_path)
-        {
-            using (SpreadsheetDocument doc = SpreadsheetDocument.Open(file_path, false))
-            {
-                WorkbookPart workbookPart = doc.WorkbookPart;
-                Sheet sheet = workbookPart.Workbook.Sheets.GetFirstChild<Sheet>();
-                WorksheetPart worksheetPart = (WorksheetPart)workbookPart.GetPartById(sheet.Id);
-
-                OpenXmlReader reader = OpenXmlReader.Create(worksheetPart);
-
-
-                DataTable dataTable = new DataTable();
-
-
-                while (reader.Read())
-                {
-                    if (reader.ElementType == typeof(Row))
-                    {
-                        List<string> ls = new List<string>();
-                        Row row = (Row)reader.LoadCurrentElement();
-                        foreach (Cell cell in row.Elements<Cell>())
-                        {
-                            string cellValue = GetCellValue(doc, cell);
-
-                            ls.Add(cellValue);
-                        }
-                        dataTable.Rows.Add(ls);
-
-                    }
-                }
-                return dataTable;
-            }
-        }
-        private static string GetCellValue(SpreadsheetDocument doc, Cell cell)
-        {
-            SharedStringTablePart stringTablePart = doc.WorkbookPart.SharedStringTablePart;
-            string value = "";
-            if (cell.CellValue != null)
-            {
-                value = cell.CellValue.InnerXml;
-            }
-
-
-
-
-            if (cell.DataType != null && cell.DataType.Value == CellValues.SharedString)
-            {
-                return stringTablePart.SharedStringTable.ChildElements[Int32.Parse(value)].InnerText;
-            }
-            else
-            {
-                return value;
-            }
-        }
-
-
 
 
 
@@ -207,9 +167,14 @@ namespace MinePick
         private void All_Ini()
         {
             ipt_Path.Text = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
+
+            ipt_Sheet.CurrentWorksheet.Resize(1, 1);
         }
 
+        private void ipt_Sheet_MouseDown(object sender, MouseButtonEventArgs e)
+        {
 
+        }
     }
 
 
