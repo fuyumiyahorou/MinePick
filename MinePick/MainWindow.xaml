@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:MinePick"
         xmlns:reoGrid="clr-namespace:unvell.ReoGrid;assembly=unvell.ReoGrid"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Mine Pick" Height="480" Width="800">
 
 
 
@@ -17,7 +17,7 @@
             <RowDefinition Height="32"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0" Background="#ecf0f1">
+        <Grid Grid.Row="0" Background="#FFEEEEF2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="32"/>
                 <ColumnDefinition Width="*"/>
@@ -44,7 +44,7 @@
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="16"/>
                     </Grid.RowDefinitions>
-                    <Grid Grid.Row="0">
+                    <Grid Grid.Row="0" Background="#FFE6E6E8">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="32"/>
                             <ColumnDefinition Width="*"/>
@@ -72,7 +72,7 @@
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="16"/>
                     </Grid.RowDefinitions>
-                    <Grid Grid.Row="0">
+                    <Grid Grid.Row="0" Background="#FFE6E6E8">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="32"/>
                             <ColumnDefinition Width="*"/>
@@ -98,7 +98,7 @@
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="16"/>
                     </Grid.RowDefinitions>
-                    <Grid Grid.Row="0">
+                    <Grid Grid.Row="0" Background="#FFE6E6E8">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="32"/>
                             <ColumnDefinition Width="*"/>
