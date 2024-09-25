@@ -219,7 +219,17 @@ namespace MinePick
 
         private void opt_Clear_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            System.Windows.Forms.MessageBox.Show("确定清除吗？", "清除提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
+            if(System.Windows.Forms.MessageBox.Show("确定清除吗？", "清除提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == System.Windows.Forms.DialogResult.OK)
+            {
+                opt_Sheet.CurrentWorksheet.Resize(1, 2);
+                opt_Sheet.CurrentWorksheet.DeleteRows(0,0);
+
+                opt_Sheet.CurrentWorksheet.Resize(1, 2);
+
+
+
+            }
+
 
         }
     }
