@@ -17,14 +17,14 @@
             <RowDefinition Height="32"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
+        <Grid Grid.Row="0" Background="#ecf0f1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="32"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="32"/>
             </Grid.ColumnDefinitions>
             <Image Grid.Column="0" x:Name="btm_Open" Height="24" Width="24" Margin="4,4,4,4" Cursor="Hand" Source="/assets/002.png" MouseDown="btm_Open_MouseDown" ToolTip="选择文件夹"/>
-            <TextBox Grid.Column="1" x:Name="ipt_Path" Height="24" Margin="4,4,4,4" VerticalAlignment="Center" VerticalContentAlignment="Center" KeyDown="ipt_Path_KeyDown" IsReadOnly="True"/>
+            <TextBox Background="Transparent" Grid.Column="1" x:Name="ipt_Path" Height="24" Margin="4,4,4,4" VerticalAlignment="Center" VerticalContentAlignment="Center" KeyDown="ipt_Path_KeyDown" IsReadOnly="True"/>
             <Image Grid.Column="2" x:Name="btm_Clear" Height="24" Width="24" Margin="4,4,4,4" Cursor="Hand" Source="/assets/003.png" MouseDown="btm_Clear_MouseDown" ToolTip="清空"/>
 
         </Grid>
@@ -32,9 +32,9 @@
         
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="240"/>
+                <ColumnDefinition Width="224"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="224"/>
             </Grid.ColumnDefinitions>
 
             <Border  Grid.Column="0" BorderBrush="#ecf0f1" BorderThickness="1">
@@ -108,7 +108,7 @@
                         <Image Grid.Column="0" Height="20" Width="20" Source="/assets/005.png" Margin="4"/>
                         <TextBlock Grid.Column="1" Text="预览" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="4"/>
                         <Image Grid.Column="2" x:Name="opt_Clear" Cursor="Hand" Height="24" Width="24" Source="/assets/001.png" Margin="4" ToolTip="清除预览" MouseDown="opt_Clear_MouseDown"/>
-                        <Image Grid.Column="3" x:Name="opt_Save" Cursor="Hand" Height="24" Width="24" Source="/assets/007.png" Margin="4" ToolTip="保存文件"/>
+                        <Image Grid.Column="3" x:Name="opt_Save" Cursor="Hand" Height="24" Width="24" Source="/assets/007.png" Margin="4" ToolTip="保存文件" MouseDown="opt_Save_MouseDown"/>
 
                     </Grid>
                     <Grid Grid.Row="1">

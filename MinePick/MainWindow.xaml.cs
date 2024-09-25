@@ -36,10 +36,10 @@ namespace MinePick
         private void btm_Open_MouseDown(object sender, MouseButtonEventArgs e)
         {
             // Configure open folder dialog box
-            Microsoft.Win32.OpenFolderDialog dialog = new();
+            OpenFolderDialog dialog = new();
 
             dialog.Multiselect = false;
-            dialog.Title = "Select a folder";
+            dialog.Title = "选择文件夹";
 
             // Show open folder dialog box
             bool? result = dialog.ShowDialog();
@@ -88,6 +88,7 @@ namespace MinePick
 
 
                 Load_Excel(file_path);
+                opt_Opt.Text = "未保存";
 
             }
 
@@ -137,6 +138,7 @@ namespace MinePick
                         {
 
                             ipt_List.Items.Add(file.Name);
+
                         }
                     }
                 }
@@ -206,7 +208,7 @@ namespace MinePick
                 lo ++;
                 opt_Sheet.CurrentWorksheet.SetRows(lo+1);
             }
-
+            opt_Opt.Text = "未保存";
         }
 
         private void ipt_Fresh_MouseDown(object sender, MouseButtonEventArgs e)
@@ -221,10 +223,10 @@ namespace MinePick
         {
             if(System.Windows.Forms.MessageBox.Show("确定清除吗？", "清除提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == System.Windows.Forms.DialogResult.OK)
             {
-                opt_Sheet.CurrentWorksheet.Resize(1, 2);
-                opt_Sheet.CurrentWorksheet.DeleteRows(0,0);
+                opt_Sheet.CurrentWorksheet.DeleteRows(0, opt_Sheet.CurrentWorksheet.MaxContentRow+1);
 
-                opt_Sheet.CurrentWorksheet.Resize(1, 2);
+
+                //opt_Sheet.CurrentWorksheet.Resize(1, 2);
 
 
 
@@ -232,5 +234,33 @@ namespace MinePick
 
 
         }
+
+        private void opt_Save_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+            if (opt_Sheet.CurrentWorksheet.RowCount>1)
+            {
+                Microsoft.Win32.SaveFileDialog saveFileDialog = new ();
+                saveFileDialog.Filter = "Excel文件 (*.xlsx)|*.xlsx";
+                saveFileDialog.ShowDialog();
+                
+                string save_path = saveFileDialog.FileName;
+                
+
+
+
+                opt_Sheet.Save(save_path,FileFormat.Excel2007);
+                opt_Opt.Text = "已保存至 " + save_path;
+                
+
+            }
+            if (Directory.Exists(ipt_Path.Text))
+            {
+                Find_files();
+            }
+
+        }
+
+
     }
 }
