@@ -56,6 +56,7 @@ namespace MinePick
 
                 Find_files();
             }
+            GC.Collect();
         }
 
         private void btm_Clear_MouseDown(object sender, MouseButtonEventArgs e)
@@ -75,6 +76,7 @@ namespace MinePick
                     Find_files();
                 }
             }
+            GC.Collect();
         }
 
 
@@ -93,7 +95,7 @@ namespace MinePick
             }
 
 
-
+            GC.Collect();
 
         }
 
@@ -154,6 +156,7 @@ namespace MinePick
                 opt_Count.Text = "未加载";
             }
             ipt_List.SelectedIndex = -1;
+            GC.Collect();
 
         }
 
@@ -179,6 +182,7 @@ namespace MinePick
 
             ipt_Sheet.CurrentWorksheet.Resize(1, 1);
             opt_Sheet.CurrentWorksheet.Resize(1, 2);
+            GC.Collect();
         }
 
         private void ipt_Sheet_MouseDown(object sender, MouseButtonEventArgs e)
@@ -201,14 +205,11 @@ namespace MinePick
                 opt_Sheet.CurrentWorksheet[lo, 0] = li;
                 opt_Sheet.CurrentWorksheet[lo, 1] = value;
 
-
-
-
-
                 lo ++;
                 opt_Sheet.CurrentWorksheet.SetRows(lo+1);
             }
             opt_Opt.Text = "未保存";
+            GC.Collect();
         }
 
         private void ipt_Fresh_MouseDown(object sender, MouseButtonEventArgs e)
@@ -217,6 +218,7 @@ namespace MinePick
             {
                 Find_files();
             }
+            GC.Collect();
         }
 
         private void opt_Clear_MouseDown(object sender, MouseButtonEventArgs e)
@@ -225,14 +227,9 @@ namespace MinePick
             {
                 opt_Sheet.CurrentWorksheet.DeleteRows(0, opt_Sheet.CurrentWorksheet.MaxContentRow+1);
 
-
-                //opt_Sheet.CurrentWorksheet.Resize(1, 2);
-
-
-
             }
 
-
+            GC.Collect();
         }
 
         private void opt_Save_MouseDown(object sender, MouseButtonEventArgs e)
@@ -258,7 +255,7 @@ namespace MinePick
             {
                 Find_files();
             }
-
+            GC.Collect();
         }
 
 
