@@ -8,7 +8,54 @@
         mc:Ignorable="d"
         Title="Mine Pick" Height="480" Width="800">
 
+    <Window.Style>
+        <Style TargetType="Window">
+            <Setter Property="WindowChrome.WindowChrome">
+                <Setter.Value>
+                    <WindowChrome x:Name="winup" CornerRadius="0" CaptionHeight="32" GlassFrameThickness="-1" UseAeroCaptionButtons="True" NonClientFrameEdges="None"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate  TargetType="Window">
+                        <Grid>
+                            <Grid  >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="32"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
 
+                                <Grid Grid.Row="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="108"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="108"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <StackPanel Margin="4" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <Image x:Name="opt_Ico" Width="24" Height="24" Source="/assets/000.png" Margin="4,0,4,0"/>
+                                        <TextBlock x:Name="opt_Ttl" Text="Mine Pick" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="4"/>
+                                    </StackPanel>
+                                </Grid>
+
+                                <Grid x:Name="Content_Panel" Grid.Row="1"  Background="{TemplateBinding Background}">
+                                    <AdornerDecorator>
+                                        <ContentPresenter/>
+                                    </AdornerDecorator>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="WindowState" Value="Maximized">
+                                <Setter TargetName="Content_Panel" Property="Margin" Value="8">
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Style>
 
 
 
@@ -17,7 +64,7 @@
             <RowDefinition Height="32"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0" Background="#FFEEEEF2">
+        <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="32"/>
                 <ColumnDefinition Width="*"/>

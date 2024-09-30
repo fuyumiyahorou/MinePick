@@ -209,6 +209,8 @@ namespace MinePick
                 opt_Sheet.CurrentWorksheet.SetRows(lo+1);
             }
             opt_Opt.Text = "未保存";
+            opt_Sheet.CurrentWorksheet.SetRows(lo);
+
             GC.Collect();
         }
 

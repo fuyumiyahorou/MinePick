@@ -7,6 +7,7 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="assets\000.png" />
     <None Remove="assets\001.png" />
     <None Remove="assets\002.png" />
     <None Remove="assets\003.png" />
@@ -21,6 +22,9 @@
     <PackageReference Include="unvell.ReoGridWPF.dll" Version="3.0.0" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="assets\000.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="assets\001.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
